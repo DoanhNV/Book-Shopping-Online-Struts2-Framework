@@ -4,10 +4,14 @@ import org.apache.struts2.convention.annotation.Action;
 import org.apache.struts2.convention.annotation.Result;
 
 import static com.ngovandoanh.onlineshopping.constant.URL.*;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Persistence;
+
 import com.opensymphony.xwork2.ActionSupport;
 
 public class PageController extends ActionSupport {
-
+	EntityManager em = Persistence.createEntityManagerFactory("bookshopping").createEntityManager();
 	/**
 	 * serialVersionUID
 	 */
@@ -15,6 +19,7 @@ public class PageController extends ActionSupport {
 
 	@Action(value = "/", results = { @Result(location = INDEX_URL) })
 	public String loadIndex() {
+		System.out.println(em);
 		return SUCCESS;
 	}
 
